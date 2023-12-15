@@ -1,0 +1,60 @@
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ClassesEnrolledController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\QAUpdateController;
+use App\Http\Controllers\ProgramEnrollController;
+use App\Http\Controllers\StatsController;
+use App\Http\Controllers\ExternalMailController;
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/addCourse', [ClassesEnrolledController::class, 'addCourse']);
+Route::post('/addExam', [ClassesEnrolledController::class, 'updateExam']);
+Route::post('/addProgram', [ProgramController::class, 'addProgram']);
+Route::post('/addQA', [QAUpdateController::class, 'addQA']);
+Route::post('/deleteCourse', [ClassesEnrolledController::class, 'deleteCourse']);
+Route::post('/deleteProgram', [ProgramController::class, 'deleteProgram']);
+Route::post('/deleteQA', [QAUpdateController::class, 'deleteQA']);
+Route::post('/deleteUser', [UserController::class, 'deleteUser']);
+Route::post('/editCourse', [ClassesEnrolledController::class, 'updateCourse']);
+Route::post('/editGrade', [ClassesEnrolledController::class, 'updateGradeAndResources']);
+Route::post('/editProgram', [ProgramController::class, 'updateProgram']);
+Route::post('/editQA', [QAUpdateController::class, 'updateQA']);
+Route::post('/editQuiz', [ClassesEnrolledController::class, 'updateExamDetails']);
+Route::post('/editUser', [UserController::class, 'updateUser']);
+Route::post('/enrollCourse', [ClassesEnrolledController::class, 'enrollCourse']);
+Route::post('/enrollProgram', [ProgramEnrollController::class, 'enrollProgram']);
+Route::get('/fetchInstructors', [UserController::class, 'fetchInstructors']);
+Route::get('/fetchInstructors2', [UserController::class, 'fetchInstructorLastNames']);
+Route::get('/fetchbar', [UserController::class, 'fetchUserCounts']);
+Route::get('/fetchCounts', [StatsController::class, 'fetchCounts']);
+Route::get('/fetchCourseID', [ClassesEnrolledController::class, 'fetchCourseIds']);
+Route::get('/fetchCourseIdEmail', [ClassesEnrolledController::class, 'fetchCourseDetailsEmail']);
+Route::post('/fetchCourses', [ClassesEnrolledController::class, 'fetchCourseDetails']);
+Route::post('/fetchInstructors', [StatsController::class, 'fetchInstructors']);
+Route::post('/fetchModal', [UserController::class, 'fetchUserDetails']);
+Route::get('/fetchPCCounts', [StatsController::class, 'fetchPCCounts']);
+Route::get('/fetchpie', [ClassesEnrolledController::class, 'fetchCourseData']);
+Route::get('/fetchPrograms', [ProgramController::class, 'fetchProgramNames']);
+Route::post('/fetchPrograms2', [ProgramController::class, 'fetchProgramDetails']);
+Route::get('/fetchQACounts', [QAUpdateController::class, 'fetchCounts']);
+Route::post('/fetchRole', [UserController::class, 'fetchUserRole']);
+Route::post('/getName', [UserController::class, 'fetchUserName']);
+Route::post('/updateProfile', [UserController::class, 'updateUserDetails']);
+Route::post('/viewClassesEnrolled', [ClassesEnrolledController::class, 'fetchEnrollments']);
+Route::get('/viewCourses', [ClassesEnrolledController::class, 'fetchAllCourses']);
+Route::get('/viewPrograms', [ProgramController::class, 'fetchAllPrograms']);
+Route::get('/viewPrograms2', [ProgramEnrollController::class, 'fetchAllProgramEnrollments']);
+Route::get('/viewQA', [QAUpdateController::class, 'fetchAllQAUpdates']);
+Route::get('/viewQuiz', [ClassesEnrolledController::class, 'fetchAllClassEnrollments']);
+Route::get('/viewUsers', [UserController::class, 'fetchAllUsers']);
+// Route::post('/contactform', [ExternalMailController::class, 'sendMail']);
